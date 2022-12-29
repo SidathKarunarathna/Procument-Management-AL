@@ -9,7 +9,6 @@ page 50112 "Material Request Card"
 
     layout
     {
-
         area(content)
         {
             group(General)
@@ -20,7 +19,6 @@ page 50112 "Material Request Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the No. field.';
                     Editable = false;
-
                 }
                 field("Created Date"; Rec."Created Date")
                 {
@@ -41,9 +39,6 @@ page 50112 "Material Request Card"
                     ToolTip = 'Specifies the value of the Used for PO field.';
                     Editable = false;
                 }
-
-
-
             }
 
             part("Material Request Line"; "Material Request Line")
@@ -95,7 +90,6 @@ page 50112 "Material Request Card"
                     ApplicationArea = All;
                     ToolTip = 'Specifies the value of the Sent foe Processing Date field.';
                 }
-
             }
         }
     }
@@ -130,12 +124,8 @@ page 50112 "Material Request Card"
                         Rec.Modify();
                         Message('Successfully Sent for Processing');
                     end;
-
                 end;
-
             }
-
-
         }
     }
     //     trigger OnOpenPage()
@@ -144,7 +134,6 @@ page 50112 "Material Request Card"
     //             IsEditable:=false
     //         else if Rec.Status=Status::" Pending" then
     //             IsEditable:=true;
-
     //     end;
     //     var
     //         IsEditable :Boolean;

@@ -4,12 +4,13 @@ pageextension 50120 PurchaseOrderExt extends "Purchase Order"
     {
         addafter("Assigned User ID")
         {
-            field("Material Request No.";Rec."Material Request No.")
+            field("Material Request No."; Rec."Material Request No.")
             {
-                ApplicationArea=All;
+                ApplicationArea = All;
+                Editable = false;
             }
         }
     }
-    
-    
+
+
 }
