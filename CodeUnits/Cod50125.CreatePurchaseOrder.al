@@ -33,7 +33,7 @@ codeunit 50125 CreatePurchaseOrder
                     MaterialLine.SetRange("Reqest No.", RequestNO);
                     //Create Purchase Line
                     if MaterialLine.FindFirst() then
-                        repeat begin
+                        repeat 
                             PurchaseLine.Init();
                             PurchaseLine."Document No." := PurchaseHeader."No.";
                             PurchaseLine."Document Type" := PurchaseLine."Document Type"::Order;
@@ -44,7 +44,6 @@ codeunit 50125 CreatePurchaseOrder
                             PurchaseLine.Validate("Location Code", MaterialLine."Location Code");
                             PurchaseLine.Validate(Quantity, MaterialLine.Quantity);
                             PurchaseLine.Modify();
-                        end;
                         until MaterialLine.Next() = 0;
                 end;
                 Message('Purchase Order Created!');
