@@ -6,7 +6,7 @@ page 50118 "ProcessingMaterialRequestCard"
     InsertAllowed = false;
     ModifyAllowed = false;
     DeleteAllowed = false;
-    PromotedActionCategories = 'New,Process,Report,Request';
+    PromotedActionCategories = 'New,Process,Report,Request,Navigate';
     //Editable=false;
     layout
     {
@@ -136,6 +136,17 @@ page 50118 "ProcessingMaterialRequestCard"
             //         Message('Successfully Deleted');
             //     end;
             // }
+            action("Open Document")
+            {
+                ApplicationArea = All;
+                Image = Document;
+                Visible = Rec.Status = Rec.Status::Processed;
+                Promoted = true;
+                PromotedOnly = true;
+                PromotedCategory = Category5;
+                RunObject = Page "Purchase Order";
+                RunPageLink = "Material Request No." = field("No.");
+            }
         }
     }
     trigger OnOpenPage()
