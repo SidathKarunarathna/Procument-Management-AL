@@ -27,6 +27,8 @@ codeunit 50125 CreatePurchaseOrder
                     PurchaseHeader.Insert(true);
                     MaterialHeader.Status := MaterialHeader.Status::Processed;
                     MaterialHeader."Used for PO" := true;
+                    PurchaseHeader.Invoice := true;
+                    PurchaseHeader.Receive:=true;
                     MaterialHeader.Modify();
 
                     MaterialLine.Reset();
@@ -46,7 +48,9 @@ codeunit 50125 CreatePurchaseOrder
                             PurchaseLine.Modify();
                         until MaterialLine.Next() = 0;
                 end;
-                Message('Purchase Order Created!');
+
+                if PurchaseHeader.SendToPosting(90) then
+                    Message('Purchase Order Succsessfully Posted!');
             end;
     end;
     procedure CheckVendorNo(): Boolean
