@@ -109,20 +109,27 @@ page 50112 "Material Request Card"
                 trigger OnAction()
                 var
                     User: Record User;
+
                 begin
                     Rec.TestField("Requested Name");
                     Rec.TestField(Auth);
                     Rec.TestField("Staff No.");
                     Rec.TestField(Date);
+
+
                     if Confirm('Do you want to send this for Processing') then begin
-                        User.Reset();
-                        User.SetRange("User Name", UserId);
-                        user.FindFirst();
-                        Rec.Status := Status::"Sent for Processing";
-                        Rec."Sent for Processing Date" := Today;
-                        Rec."Processed Name" := User."Full Name";
-                        Rec.Modify();
-                        Message('Successfully Sent for Processing');
+                        if QuantityCheck() then begin
+                            User.Reset();
+                            User.SetRange("User Name", UserId);
+                            user.FindFirst();
+                            Rec.Status := Status::"Sent for Processing";
+                            Rec."Sent for Processing Date" := Today;
+                            Rec."Processed Name" := User."Full Name";
+                            Rec.Modify();
+                            Message('Successfully Sent for Processing');
+                        end
+                        else 
+                            error('Quantity cannot be 0');
                     end;
                 end;
             }
@@ -138,5 +145,19 @@ page 50112 "Material Request Card"
     //     var
     //         IsEditable :Boolean;
     //         Status : Enum Status;
+    procedure QuantityCheck(): Boolean
+    var
+        MaterialLine: Record "Material Request Line";
+        QuantityCheck: Boolean;
+    begin
+        MaterialLine.SetRange("Reqest No.", rec."No.");
+        MaterialLine.FindFirst();
+        QuantityCheck := true;
+        repeat
+            if MaterialLine.Quantity = 0 then
+                QuantityCheck := false;
+        until MaterialLine.Next() = 0;
+        exit(QuantityCheck)
+    end;
 
 }

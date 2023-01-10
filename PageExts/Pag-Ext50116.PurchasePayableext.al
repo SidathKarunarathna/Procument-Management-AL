@@ -8,6 +8,10 @@ pageextension 50116 "Purchase & Payable ext " extends "Purchases & Payables Setu
             {
                 ApplicationArea = All;
             }
+            field("Vendor Invoice Nos";Rec."Vendor Invoice Nos")
+            {
+                ApplicationArea=All;
+            }
         }
     }
 }

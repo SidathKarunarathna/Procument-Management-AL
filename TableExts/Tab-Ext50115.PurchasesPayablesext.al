@@ -8,6 +8,12 @@ tableextension 50115 "Purchases & Payables ext" extends "Purchases & Payables Se
             DataClassification = ToBeClassified;
             TableRelation="No. Series";
         }
+        field(50101;"Vendor Invoice Nos"; Code[20])
+        {
+            Caption = 'Vendor Invoice Nos';
+            DataClassification = ToBeClassified;
+            TableRelation="No. Series";
+        }
         
     }
 }
