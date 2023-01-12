@@ -135,16 +135,6 @@ page 50112 "Material Request Card"
             }
         }
     }
-    //     trigger OnOpenPage()
-    //     begin
-    //         if Rec.Status= Status::"Sent for Processing" then
-    //             IsEditable:=false
-    //         else if Rec.Status=Status::" Pending" then
-    //             IsEditable:=true;
-    //     end;
-    //     var
-    //         IsEditable :Boolean;
-    //         Status : Enum Status;
     procedure QuantityCheck(): Boolean
     var
         MaterialLine: Record "Material Request Line";
